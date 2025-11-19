@@ -11,7 +11,8 @@ namespace WebUsuarios
         public static void RegisterRoutes(RouteCollection routes)
         {
             var settings = new FriendlyUrlSettings();
-            settings.AutoRedirectMode = RedirectMode.Permanent;
+            //settings.AutoRedirectMode= RedirectMode.Off;
+            routes.Ignore("{resource}.axd/{*pathInfo}");
             routes.EnableFriendlyUrls(settings);
         }
     }

@@ -12,7 +12,7 @@ namespace CadastroUsuarios.Api.Services
         private readonly IUsuarioRepository _repo;
 
         // Construtor padrão (produção)
-        public UsuarioService() : this(new UsuarioRepositorySql())
+        public UsuarioService() : this(new UsuarioRepositorySqlProc())
         {
         }
 

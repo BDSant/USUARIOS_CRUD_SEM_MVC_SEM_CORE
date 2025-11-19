@@ -41,52 +41,38 @@
             $('#modalExcluir').modal('show');
         }
 
-<%--        function confirmarExclusao() {
-            var id = $('#idExcluir').val();
-
-            $.ajax({
-                type: "POST",
-                url: '<%= ResolveUrl("~/CadastroUsuarios/Usuarios.aspx/ExcluirUsuario") %>',
-                data: JSON.stringify({ id: parseInt(id) }),
-                contentType: "application/json; charset=utf-8",
-                dataType: "json",
-                success: function (res) {
-                    var result = res.d; // retorno do WebMethod
-
-                    if (result && result.indexOf("OK") === 0) {
-                        $('#modalExcluir').modal('hide');
-                        alert('Excluído com sucesso.');
-                        location.reload();
-                    } else {
-                        alert(result || 'Não foi possível excluir o usuário.');
-                    }
-                },
-                error: function (xhr, status, error) {
-                    console.error("Status:", xhr.status, "Resposta:", xhr.responseText);
-                    alert('Erro ao excluir usuário (chamada AJAX). Status: ' + xhr.status);
-                }
-            });
-        }--%>
-
-
 
         function confirmarExclusao() {
             var id = $('#idExcluir').val();
 
             $.ajax({
-                url: apiBaseUrl + '/api/usuarios/' + id,   // ex: https://localhost:44381/api/usuarios/4
-                type: 'DELETE',
-                success: function () {
-                    $('#modalExcluir').modal('hide');
-                    alert('Excluído com sucesso.');
-                    location.reload();
+                type: "POST",
+                url: "Usuarios.aspx/ExcluirUsuario",
+                data: JSON.stringify({ id: parseInt(id) }),
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function (res) {
+                    // ASP.NET WebMethod retorna algo do tipo { "d": "OK" }
+                    var result = res.d;
+
+                    if (result === "OK") {
+                        $('#modalExcluir').modal('hide');
+                        alert('Excluído com sucesso!');
+                        location.reload();
+                    } else {
+                        alert("Erro retornado: " + result);
+                    }
                 },
                 error: function (xhr, status, error) {
-                    console.error("Status:", xhr.status, "Resp:", xhr.responseText);
-                    alert('Erro ao excluir usuário. Status: ' + xhr.status);
+                    console.error("AJAX ERROR status:", xhr.status, "resp:", xhr.responseText);
+                    alert("Falha ao excluir usuário. Status: " + xhr.status);
                 }
             });
         }
+
+
+
+
 
     </script>
 </head>

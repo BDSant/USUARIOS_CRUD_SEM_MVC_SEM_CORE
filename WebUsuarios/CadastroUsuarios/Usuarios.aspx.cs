@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Configuration;
 using System.Net.Http;
 using System.Text;
+using System.Web.Script.Services;
 using System.Web.Services;
 using System.Web.UI;
 
@@ -50,7 +51,6 @@ namespace WebUsuarios.CadastroUsuarios
                     lblErroModal.Text = "Erro ao carregar usuários: " + response.ReasonPhrase;
                     ScriptManager.RegisterStartupScript(this, GetType(), "ShowErro", "$('#modalErro').modal('show');", true);
                     return;
-                    // aqui você poderia exibir uma mensagem de erro na tela
                 }
             }
             catch (Exception ex)
@@ -110,7 +110,28 @@ namespace WebUsuarios.CadastroUsuarios
             }
         }
 
+        //[WebMethod]
+        //[ScriptMethod(ResponseFormat = ResponseFormat.Json)]
+        //public static string ExcluirUsuario(int id)
+        //{
+        //    try
+        //    {
+        //        var response = httpClient.DeleteAsync(ApiBaseUrl + "/api/usuarios/" + id).Result;
+
+        //        if (response.IsSuccessStatusCode)
+        //            return "OK";
+
+        //        var body = response.Content.ReadAsStringAsync().Result;
+        //        return $"Erro ao excluir. Status: {(int)response.StatusCode} - {response.ReasonPhrase}. Detalhes: {body}";
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        return "Erro: " + ex.Message;
+        //    }
+        //}
+
         [WebMethod]
+        [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
         public static string ExcluirUsuario(int id)
         {
             try
@@ -121,12 +142,11 @@ namespace WebUsuarios.CadastroUsuarios
                     return "OK";
 
                 var body = response.Content.ReadAsStringAsync().Result;
-
                 return $"Erro ao excluir. Status: {(int)response.StatusCode} - {response.ReasonPhrase}. Detalhes: {body}";
             }
             catch (Exception ex)
             {
-                return "Exceção ao excluir: " + ex.Message;
+                return "Erro: " + ex.Message;
             }
         }
 
