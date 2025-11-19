@@ -42,7 +42,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class1.cs" />
     <Compile Include="Interfaces\IUsuarioRepository.cs" />
     <Compile Include="Interfaces\IUsuarioService.cs" />
     <Compile Include="Models\Usuario.cs" />

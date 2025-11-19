@@ -14,7 +14,6 @@ namespace CadastroUsuarios.Shared.Models
         [StringLength(11, MinimumLength = 11, ErrorMessage = "CPF deve ter 11 dígitos.")]
         public string Cpf { get; set; } = string.Empty;
 
-        // Sem DataAnnotations, conforme você pediu
         public string Telefone { get; set; } = string.Empty;
     }
 }
