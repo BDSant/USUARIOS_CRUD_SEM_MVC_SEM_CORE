@@ -110,26 +110,6 @@ namespace WebUsuarios.CadastroUsuarios
             }
         }
 
-        //[WebMethod]
-        //[ScriptMethod(ResponseFormat = ResponseFormat.Json)]
-        //public static string ExcluirUsuario(int id)
-        //{
-        //    try
-        //    {
-        //        var response = httpClient.DeleteAsync(ApiBaseUrl + "/api/usuarios/" + id).Result;
-
-        //        if (response.IsSuccessStatusCode)
-        //            return "OK";
-
-        //        var body = response.Content.ReadAsStringAsync().Result;
-        //        return $"Erro ao excluir. Status: {(int)response.StatusCode} - {response.ReasonPhrase}. Detalhes: {body}";
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        return "Erro: " + ex.Message;
-        //    }
-        //}
-
         [WebMethod]
         [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
         public static string ExcluirUsuario(int id)
